@@ -1,4 +1,4 @@
-# MYSQL 操作语句 
+#  MYSQL 操作语句 
 
 ## 表操作语句
 
@@ -61,7 +61,46 @@
 
         select cat_id,cat_name from category where exists(select * from goods where goods.cat_id = category.cat_id);
 
+  5. into outfile  导入导出数据
+
+     * 使用select * into outfile 导出  SELECT * INTO OUTFILE 'd:\\test.txt' FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n' FROM test.table
+     * 导入   LOAD DATA INFILE '/tmp/fi.txt' INTO TABLE test.fii FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n'
+     * fields terminated by ',' 字段间分隔符
+     * optionally enclosed by '"' 将字段包围对数值型无效
+     * lines terminated by '\n' 换行符
+
+  6. insert into 插入数据
+
+     * 可以省略对列的指定，要求values()括号内，提供给了按照列顺序出现的所有字段的值或者使用set语法  insert into tbl_name set field = value,...;
+
+     * 可以一次性使用多个值，采用(),(),();的形式 insert into tbl_name values (),(),();
+
+     * 可以在列值指定时，使用表达式  insert into tbl_name values (field_value,10+10,now());
+
+     * 可以使用一个填特殊值 default, 表示该列使用默认值  insert into tbl_name values (field_value,default)
+
+     * 可以通过有个查询的结果，作为需要插入的值 insert into tbl_name select ...;
+
+     * 可以指定在插入的值出现主键（或唯一索引）冲突时，更新其他非主键列的信息 insert into tbl_name 值 on duplicate key update 字段=值,...;   例子: 
+
+       INSERT INTO TABLE (a,c) VALUES (1,3) ON DUPLICATE KEY UPDATE c=c+1;
+       UPDATE TABLE SET c=c+1 WHERE a=1;
+
        ​
+
+       ​
+
+  ​
+
+  ​
+
+  ​	
+
+   
+
+  ​
+
+  ​
 
   ​
 
